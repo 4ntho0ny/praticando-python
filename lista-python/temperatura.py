@@ -1,0 +1,1 @@
+print(f'F -> C = {5 * (float(input("F: ")) - 32) / 9}')

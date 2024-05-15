@@ -1,0 +1,1 @@
+print(f'Int: {int(input("Number: "))}\nInt: {int(input("Number: "))}\nReal: {float(input("Number: "))}')
