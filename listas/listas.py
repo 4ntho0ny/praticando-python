@@ -1,4 +1,4 @@
-# numbers = [13, 44, 6, 10, 2, 9, 87]
+numbers = [13, 44, 6, 10, 2, 9, 87]
 
 # print(numbers[0])
 # print(numbers[9-8])
@@ -27,8 +27,8 @@
 
 # print(numbers)
 
-# numbers[1:1] = ["a", "b"]
-# print(numbers)
+numbers[1:1] = ["a", "b"]
+print(numbers)
 # numbers[9:9] = ["a", "b"]
 # print(numbers)
 # numbers[2] = [True]
@@ -62,7 +62,7 @@
 
 # print(letters)
 
-letters.extend([1,2,3,4])
+# letters.extend([1,2,3,4])
 
-print(letters)
+# print(letters)
 
