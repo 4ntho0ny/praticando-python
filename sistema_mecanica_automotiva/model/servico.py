@@ -6,9 +6,6 @@ class Servico:
         self.valor = valor
         self.data_termino = data_termino
 
-    def validar_nome(nome):
-        return True if nome != "" else False
-
     def validar_preco(preco):
         try:
             return bool(float(preco))
@@ -21,10 +18,11 @@ class Servico:
         except ValueError:
             return False
 
-    def alterar(self, nome, valor, data_termino):
-        self.nome = nome
-        self.valor = valor
-        self.data_termino = data_termino
+    # def alterar(self, nome, valor, data_termino):
+    #     self.nome = nome
+    #     self.valor = valor
+    #     self.data_termino = data_termino
     
     def relatorio(self):
         print(f'DADOS DO SERVIÇO\n   Nome: {self.nome}\n   Valor: {self.valor}\n   Data do término: {self.data_termino}')
+        

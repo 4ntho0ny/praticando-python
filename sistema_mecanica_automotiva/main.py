@@ -1,9 +1,9 @@
-import sistema_mecanica_automotiva.functions as functions
-import cliente
-import veiculo
-import servico
-import fornecedor
-import conta
+import functions
+import model.cliente as cliente
+import model.veiculo as veiculo
+import model.servico as servico
+import model.fornecedor as fornecedor
+import model.conta as conta
 
 running = True
 
@@ -15,7 +15,7 @@ contas = []
 servicos = []
 
 while running:
-    opc = int(input("1-Seção de Cadastro\n->"))
+    opc = int(input("1-Seção de Cadastro\n-> "))
 
     if opc == 1:
         opc_cad = int(input("\n============== <<Cadastrar>> ==============\n1-cliente\n2-veículo\n3-serviço\n4-Fornecedor\n5-conta\n0-Sair\n-> "))
@@ -32,4 +32,7 @@ while running:
             veiculo = veiculo.Veiculo(modelo, marca, placa, cor, ano)
             veiculos.append(veiculo)
         
-        # elif opc_cad == 3:
+        elif opc_cad == 3:
+            nome, valor, data_termino = functions.cadastrar_servico()
+            servico = servico.Servico(nome, valor, data_termino)
+            servicos.append(servico)
