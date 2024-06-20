@@ -8,16 +8,60 @@ def str_vazia(text):
         return False
     return True
 
-def validar_data(data):
+def transformar_datetime_obj(data):
+    dia, mes, ano = data.split("/")
+    return datetime(int(ano), int(mes), int(dia))
+
+def validar_formato_data(data):
     try:
-        data = datetime.strptime(data, "%d/%m/Y")
-    except:
+        datetime.strptime(data, "%d/%m/%Y")
+    except ValueError:
         styles.desenhar_barra()
         print("Data inválida!")
         styles.desenhar_barra()
-        return None
-    return data
+        return False
+    return True
 
+def validar_valor():
+    try:
+        valor = float(input("Valor: "))
+        if valor < 0:
+            return None
+        return valor
+    except:
+        print("Valor inválido!")
+        return None
+
+# ======== validações cliente ========
+
+def validar_cpf(cpf):
+    if cpf.isnumeric():
+        if len(cpf) == 11:
+            return True
+    styles.desenhar_barra()
+    print("CPF inválido!")
+    styles.desenhar_barra()
+    return False
+
+def validar_data_nascimento(data):
+    if validar_formato_data(data) == False:
+        return False
+    
+    data_atual = datetime.now().strftime("%d/%m/%Y")
+    data_nascimento_obj = transformar_datetime_obj(data)
+    data_atual_obj = transformar_datetime_obj(data_atual)
+    
+    # delta_dia = data_atual_obj.day - data_nascimento_obj.day
+    # delta_mes = data_atual_obj.month - data_nascimento_obj.month
+    delta_year = data_atual_obj.year - data_nascimento_obj.year
+    
+    if data_nascimento_obj > data_atual_obj or delta_year < 18:
+        styles.desenhar_barra()
+        print("Data de nascimento inválida!")
+        styles.desenhar_barra()
+        return False
+        
+    return True
 
 # ======== validações veículo ========
     
@@ -35,7 +79,7 @@ def validar_placa(placa):
     styles.desenhar_barra()
     return False
 
-def validar_ano(ano):
+def validar_ano_veiculo(ano):
     if ano.isnumeric():
         if ano > datetime.now().strftime("%Y"):
             styles.desenhar_barra()
@@ -49,13 +93,31 @@ def validar_ano(ano):
         styles.desenhar_barra()
 
 # ======== validações serviço ========
-
-def validar_valor():
-    try:
-        valor = float(input("Valor: "))
-        if valor < 0:
-            return None
-        return valor
-    except:
-        print("Valor inválido!")
+    
+def validar_data_termino(data):
+    if validar_formato_data(data) == False:
         return None
+    data_atual = datetime.now().strftime("%d/%m/%Y")
+    data_termino_obj = transformar_datetime_obj(data)
+    data_atual_obj = transformar_datetime_obj(data_atual)
+    
+    if data_termino_obj < data_atual_obj:
+        styles.desenhar_barra()
+        print("Insira uma data a frente da atual!")
+        styles.desenhar_barra()
+        return None
+    return data
+
+# ======== validações fonecedor ========
+
+def validar_cnpj(cnpj):
+    if cnpj.isnumeric():
+        if len(cnpj) == 14:
+            return True
+    styles.desenhar_barra()
+    print("CNPJ inválido!")
+    styles.desenhar_barra()
+    return False
+
+# ======== validações peça ========
+
