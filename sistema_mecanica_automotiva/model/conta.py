@@ -1,5 +1,3 @@
-import re
-
 class Conta:
     def __init__(self, nome, valor, data_vencimento):
         self.nome = nome
