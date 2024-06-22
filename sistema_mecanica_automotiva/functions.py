@@ -5,6 +5,7 @@ import styles
 # ======== <<Cliente>> ========
 
 def cadastrar_cliente():
+    styles.clear_t()
     styles.titulo("Cadastrar Cliente")
     nome = cpf = data_nascimento = ""
     
@@ -12,14 +13,10 @@ def cadastrar_cliente():
         nome = input("Nome: ")
         
         if not valid.str_vazia(nome):
-            styles.desenhar_barra()
-            print("O campo \"Nome\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Nome\" não pode ser vazio!")
             continue
         elif not nome.isalpha():
-            styles.desenhar_barra()
-            print("Nome inválido")
-            styles.desenhar_barra()
+            styles.msg_erro("Nome inválido")
             continue
         break
     
@@ -27,9 +24,8 @@ def cadastrar_cliente():
         cpf = input("CPF: ")
         
         if not valid.str_vazia(cpf):
-            styles.desenhar_barra()
-            print("O campo \"CPF\" não pode ser vazio!")
-            styles.desenhar_barra()
+            
+            styles.msg_erro("O campo \"CPF\" não pode ser vazio!")
             continue
         elif not valid.validar_cpf(cpf):
             continue
@@ -38,9 +34,7 @@ def cadastrar_cliente():
     while True:
         data_nascimento = input("Data de nascimento(dia/mês/ano): ")
         if not valid.str_vazia(data_nascimento):
-            styles.desenhar_barra()
-            print("O campo \"Data de nascimento\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Data de nascimento\" não pode ser vazio!")
             continue
         elif not valid.validar_data_nascimento(data_nascimento):
             continue
@@ -52,34 +46,31 @@ def excluir_cliente(cpf):
     for cliente in clientes:
         if cliente.cpf == cpf:
             clientes.remove(cliente)
-            styles.desenhar_barra()
-            print("Cliente excluido!")
-            styles.desenhar_barra()
+            styles.clear_t()
+            styles.msg_sucesso("Cliente excluido!")
             return True
-    styles.desenhar_barra()
-    print("Este CPF não está na lista de clientes!")
-    styles.desenhar_barra()
+    styles.clear_t()
+    styles.msg_erro("Este CPF não está na lista de clientes!")
     return False
 
 # ======== <<Veículo>> ========
 
 def cadastrar_veiculo():
+    styles.clear_t()
     styles.titulo("Cadastrar veículo")
     modelo = marca = placa = cor = ano = ""
 
     while True:
         modelo = input("Modelo do veículo: ")
         if not valid.str_vazia(modelo):
-            print("O campo \"Modelo do veículo\" não pode ser vazio!")
+            styles.msg_erro("O campo \"Modelo\" não pode ser vazio!")
             continue
         break
 
     while True:
         marca = input("Marca do veículo: ")
         if not valid.str_vazia(marca):
-            styles.desenhar_barra()
-            print("O campo \"Marca do veículo\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Marca\" não pode ser vazio!")
             continue
         break
 
@@ -92,14 +83,10 @@ def cadastrar_veiculo():
     while True:
         cor = input("Cor do veículo: ")
         if not valid.str_vazia(cor):
-            styles.desenhar_barra()
-            print("O campo \"Cor do veículo\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Cor\" não pode ser vazio!")
             continue
         elif not cor.isalpha():
-            styles.desenhar_barra()
-            print("Cor inválida")
-            styles.desenhar_barra()
+            styles.msg_erro("Cor inválida")
             continue
         break
     
@@ -115,32 +102,27 @@ def excluir_veiculo(placa):
     for veiculo in veiculos:
         if veiculo.placa == placa:
             veiculos.remove(veiculo)
-            styles.desenhar_barra()
-            print("Veículo excluido!")
-            styles.desenhar_barra()
+            styles.clear_t()
+            styles.msg_sucesso("Veículo excluido!")
             return True
-    styles.desenhar_barra()
-    print("Esta placa não está na lista de veiculos!")
-    styles.desenhar_barra()
+    styles.clear_t()
+    styles.msg_erro("Esta placa não está na lista de veiculos!")
     return False
 
 # ======== <<Serviço>> ========
 
 def cadastrar_servico():
+    styles.clear_t()
     styles.titulo("Registrar Serviço")
     nome = valor = data_termino = ""
 
     while True:
         nome = input("Nome do serviço: ")
         if not valid.str_vazia(nome):
-            styles.desenhar_barra()
-            print("O campo \"Nome do serviço\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Nome do serviço\" não pode ser vazio!")
             continue
         elif not nome.isalpha():
-            styles.desenhar_barra()
-            print("Nome do serviço inválido!")
-            styles.desenhar_barra()
+            styles.msg_erro("Nome do serviço inválido!")
             continue
         break
 
@@ -162,18 +144,17 @@ def excluir_servico(nome, data, valor):
     for servico in servicos:
         if servico.nome == nome and servico.data_termino == data and servico.valor == valor:
             servicos.remove(servico)
-            styles.desenhar_barra()
-            print("Serviço excluido!")
-            styles.desenhar_barra()
+            styles.clear_t()
+            styles.msg_sucesso("Serviço excluido!")
             return True
-    styles.desenhar_barra()
-    print("Este serviço não está na lista de servicos!")
-    styles.desenhar_barra()
+    styles.clear_t()
+    styles.msg_erro("Este serviço não está na lista de servicos!")
     return False
 
 # ======== <<Fornecedor>> ========
 
 def cadastrar_fornecedor():
+    styles.clear_t()
     styles.titulo("Registrar Fornecedor")
     nome = cnpj = ""
     
@@ -181,9 +162,7 @@ def cadastrar_fornecedor():
         nome = input("Nome do Fornecedor: ")
         
         if not valid.str_vazia(nome):
-            styles.desenhar_barra()
-            print("O campo \"Nome\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Nome\" não pode ser vazio!")
             continue
         break
     
@@ -200,18 +179,17 @@ def excluir_fornecedor(cnpj):
     for fornecedor in fornecedores:
         if fornecedor.cnpj == cnpj:
             fornecedores.remove(fornecedor)
-            styles.desenhar_barra()
-            print("Fornecedor excluido!")
-            styles.desenhar_barra()
+            styles.clear_t()
+            styles.msg_sucesso("Fornecedor excluido!")
             return True
-    styles.desenhar_barra()
-    print("Este CNPJ não está na lista de fornecedores!")
-    styles.desenhar_barra()
+    styles.clear_t()
+    styles.msg_erro("Este CNPJ não está na lista de fornecedores!")
     return False
 
 # ======== <<Peça>> ========
 
 def cadastrar_peca():
+    styles.clear_t()
     styles.titulo("Registrar Peça")
     nome = marca = preco = original = codigo = ""
 
@@ -219,9 +197,7 @@ def cadastrar_peca():
         nome = input("Nome da peça: ")
 
         if not valid.str_vazia(nome):
-            styles.desenhar_barra()
-            print("O campo \"Nome\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Nome\" não pode ser vazio!")
             continue
         break
     
@@ -229,9 +205,7 @@ def cadastrar_peca():
         marca = input("Marca da peça: ")
 
         if not valid.str_vazia(marca):
-            styles.desenhar_barra()
-            print("O campo \"Marca\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Marca\" não pode ser vazio!")
             continue
         break
     
@@ -246,18 +220,14 @@ def cadastrar_peca():
         original = input("Peça original(s/n)? ").lower().strip()
         
         if not valid.str_vazia(original):
-            styles.desenhar_barra()
-            print("Este campo não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("Este campo não pode ser vazio!")
             continue
         elif original == "s":
             original = True
         elif original == "n":
             original = False
         else:
-            styles.desenhar_barra()
-            print("Valor inválido")
-            styles.desenhar_barra()
+            styles.msg_erro("Valor inválido!")
             continue
         break
 
@@ -265,9 +235,7 @@ def cadastrar_peca():
         codigo = input("Código da peça: ")
 
         if not valid.str_vazia(codigo):
-            styles.desenhar_barra()
-            print("O campo \"Código\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Código\" não pode ser vazio!")
             continue
         break
     
@@ -277,18 +245,17 @@ def excluir_peca(codigo):
     for peca in pecas:
         if peca.codigo == codigo:
             pecas.remove(peca)
-            styles.desenhar_barra()
-            print("Peça excluida!")
-            styles.desenhar_barra()
+            styles.clear_t()
+            styles.msg_sucesso("Peça excluida!")
             return True
-    styles.desenhar_barra()
-    print("Este código não está na lista de peças!")
-    styles.desenhar_barra()
+    styles.clear_t()
+    styles.msg_erro("Esta peça não está na lista de peças!")
     return False
 
 # ======== <<Conta>> ========
 
 def cadastrar_conta():
+    styles.clear_t()
     styles.titulo("Registrar Conta")
     nome = valor = data_vencimento = ""
 
@@ -296,14 +263,10 @@ def cadastrar_conta():
         nome = input("Registrar conta: ")
 
         if not valid.str_vazia(nome):
-            styles.desenhar_barra()
-            print("O campo \"Conta\" não pode ser vazio!")
-            styles.desenhar_barra()
+            styles.msg_erro("O campo \"Conta\" não pode ser vazio!")
             continue
         elif not nome.isalpha():
-            styles.desenhar_barra()
-            print("Conta inválido")
-            styles.desenhar_barra()
+            styles.msg_erro("Conta inválida!")
             continue
         break
 
@@ -327,11 +290,9 @@ def excluir_conta(nome, data, valor):
     for conta in contas:
         if conta.nome == nome and conta.data_vencimento == data and conta.valor == valor:
             contas.remove(conta)
-            styles.desenhar_barra()
-            print("Conta excluida!")
-            styles.desenhar_barra()
+            styles.clear_t()
+            styles.msg_sucesso("Conta excluida!")
             return True
-    styles.desenhar_barra()
-    print("Esta conta não está na lista de contas!")
-    styles.desenhar_barra()
+    styles.clear_t()
+    styles.msg_erro("Esta conta não está na lista de contas!")
     return False

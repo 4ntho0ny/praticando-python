@@ -5,12 +5,14 @@ import model.servico as servico
 import model.fornecedor as fornecedor
 import model.conta as conta
 import model.peca as peca
+import validations as valid
 import styles
 from repositorio_improvisado import clientes, veiculos, servicos, contas, fornecedores, pecas
 
 running = True
 
 while running:
+    styles.clear_t()
     styles.titulo("Menu")
     opc = None
     try:
@@ -22,10 +24,11 @@ while running:
 
     # Seção de cadastro
     if opc == 1:
+        styles.clear_t()
         styles.titulo("Cadastrar")
         opc_cad = None
         try:
-            opc_cad = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer botão restante-Sair do cadastro\n-> "))
+            opc_cad = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer outro número-Sair do cadastro\n-> "))
         except ValueError:
             styles.desenhar_barra()
             print("Opção indisponível!")
@@ -76,17 +79,15 @@ while running:
     
     # Seção de exclusão
     if opc == 2:
+        styles.clear_t()
         styles.titulo("Excluir")
         opc_exclus = None
         try:
-            opc_exclus = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer botão restante-Sair da seção de exclusão\n-> "))
+            opc_exclus = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer outro número-Sair da seção de exclusão\n-> "))
         except ValueError:
             styles.desenhar_barra()
             print("Opção indisponível!")
             styles.desenhar_barra()
-        
-        excluir = False
-
 
         # ====================
         # LOGS
@@ -100,60 +101,65 @@ while running:
 
         if opc_exclus == 1:
             styles.titulo("Excluir cliente")
+            if not valid.verificar_lista_vazia(clientes):
+                continue
             while True:
                 cpf = input("Insira o cpf do cliente que deseja excluir: ")
-                excluir = functions.excluir_cliente(cpf)
-                if excluir == False:
+                if functions.excluir_cliente(cpf) == False:
                     continue
                 break
 
         elif opc_exclus == 2:
             styles.titulo("Excluir veículo")
+            if not valid.verificar_lista_vazia(veiculos):
+                continue
             while True:
                 placa = input("Insira a placa do veículo que deseja excluir: ")
-                excluir = functions.excluir_veiculo(placa)
-                if excluir == False:
+                if functions.excluir_veiculo(placa) == False:
                     continue
                 break
 
-        # NAO ESTA EXCLUINDO
-        # elif opc_exclus == 3:
-        #     styles.titulo("Excluir serviço")
-        #     while True:
-        #         nome = input("Insira nome do serviço que deseja excluir: ")
-        #         data = input("Insira data de termino do serviço que deseja excluir: ")
-        #         valor = input("Insira valor do serviço que deseja excluir: ")
-        #         excluir = functions.excluir_servico(nome, data, valor)
-        #         if excluir == False:
-        #             continue
-        #         break
+        elif opc_exclus == 3:
+            styles.titulo("Excluir serviço")
+            if not valid.verificar_lista_vazia(servicos):
+                continue
+            while True:
+                nome = input("Insira nome do serviço que deseja excluir: ")
+                data = input("Insira data de termino do serviço que deseja excluir: ")
+                valor = float(input("Insira valor do serviço que deseja excluir: "))
+                if functions.excluir_servico(nome, data, valor) == False:
+                    continue
+                break
 
         elif opc_exclus == 4:
             styles.titulo("Excluir fornecedor")
+            if not valid.verificar_lista_vazia(fornecedores):
+                continue
             while True:
                 cnpj = input("Insira CNPJ do fornecedor que deseja excluir: ")
-                excluir = functions.excluir_fornecedor(cnpj)
-                if excluir == False:
+                if functions.excluir_fornecedor(cnpj) == False:
                     continue
                 break
 
         elif opc_exclus == 5:
             styles.titulo("Excluir peça")
+            if not valid.verificar_lista_vazia(pecas):
+                continue
             while True:
                 codigo = input("Insira o código da peça que deseja excluir: ")
-                excluir = functions.excluir_peca(codigo)
-                if excluir == False:
+                if functions.excluir_peca(codigo) == False:
                     continue
                 break
 
         elif opc_exclus == 6:
             styles.titulo("Excluir conta")
+            if not valid.verificar_lista_vazia(contas):
+                break
             while True:
                 nome = input("Insira o nome da conta que deseja excluir: ")
                 data = input("Insira a data da conta que deseja excluir: ")
-                valor = input("Insira o valor da conta que deseja excluir: ")
-                excluir = functions.excluir_conta(nome, data, valor)
-                if excluir == False:
+                valor = float(input("Insira o valor da conta que deseja excluir: "))
+                if functions.excluir_conta(nome, data, valor) == False:
                     continue
                 break
         
