@@ -12,15 +12,12 @@ from repositorio_improvisado import clientes, veiculos, servicos, contas, fornec
 running = True
 
 while running:
-    styles.clear_t()
     styles.titulo("Menu")
     opc = None
     try:
         opc = int(input("\n1-Seção de Cadastro\n2-Seção de exclusão\n3-Seção de alteração\n4-Geração de relatório\n-> "))
     except ValueError:
-        styles.desenhar_barra()
-        print("Opção indisponível!")
-        styles.desenhar_barra()
+        styles.msg_erro("Opção indisponível!")
 
     # Seção de cadastro
     if opc == 1:
@@ -30,9 +27,7 @@ while running:
         try:
             opc_cad = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer outro número-Sair do cadastro\n-> "))
         except ValueError:
-            styles.desenhar_barra()
-            print("Opção indisponível!")
-            styles.desenhar_barra()
+            styles.msg_erro("Opção indisponível!")
 
         if opc_cad == 1:
             nome, cpf, data_nascimento = functions.cadastrar_cliente()
@@ -85,9 +80,7 @@ while running:
         try:
             opc_exclus = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer outro número-Sair da seção de exclusão\n-> "))
         except ValueError:
-            styles.desenhar_barra()
-            print("Opção indisponível!")
-            styles.desenhar_barra()
+            styles.msg_erro("Opção indisponível!")
 
         # ====================
         # LOGS

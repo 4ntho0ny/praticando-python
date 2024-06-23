@@ -14,4 +14,4 @@ def msg_sucesso(text):
     print("\n*******************************************\n")
 
 def clear_t():
-    system('cls')
+    system('clear')
