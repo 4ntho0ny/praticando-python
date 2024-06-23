@@ -42,6 +42,14 @@ def cadastrar_cliente():
     
     return nome, cpf, data_nascimento
 
+def editar_cliente(cliente_dados_antigos):
+    styles.clear_t()
+    styles.titulo("Editar Cliente")
+    nome, cpf, data_nascimento = cadastrar_cliente()
+    cliente_dados_antigos.nome = nome
+    cliente_dados_antigos.cpf = cpf
+    cliente_dados_antigos.data_nascimento = data_nascimento
+
 def excluir_cliente(cpf):
     for cliente in clientes:
         if cliente.cpf == cpf:
@@ -52,6 +60,14 @@ def excluir_cliente(cpf):
     styles.clear_t()
     styles.msg_erro("Este CPF não está na lista de clientes!")
     return False
+
+def buscar_cliente_cpf(cpf):
+    for cliente in clientes:
+        if cliente.cpf == cpf:
+            return cliente
+    styles.clear_t()
+    styles.msg_erro("Este CPF não está na lista de clientes!")
+    return None
 
 # ======== <<Veículo>> ========
 
@@ -98,6 +114,16 @@ def cadastrar_veiculo():
 
     return modelo, marca, placa, cor, ano
 
+def editar_veiculo(veiculo_dados_antigos):
+    styles.clear_t()
+    styles.titulo("Editar Veiculo")
+    modelo, marca, placa, cor, ano = cadastrar_veiculo()
+    veiculo_dados_antigos.modelo = modelo
+    veiculo_dados_antigos.marca = marca
+    veiculo_dados_antigos.placa = placa
+    veiculo_dados_antigos.cor = cor
+    veiculo_dados_antigos.ano = ano
+
 def excluir_veiculo(placa):
     for veiculo in veiculos:
         if veiculo.placa == placa:
@@ -108,6 +134,14 @@ def excluir_veiculo(placa):
     styles.clear_t()
     styles.msg_erro("Esta placa não está na lista de veiculos!")
     return False
+
+def buscar_veiculo_placa(placa):
+    for veiculo in veiculos:
+        if veiculo.placa == placa:
+            return veiculo
+    styles.clear_t()
+    styles.msg_erro("Esta placa não está na lista de veiculos!")
+    return None
 
 # ======== <<Serviço>> ========
 
@@ -140,6 +174,14 @@ def cadastrar_servico():
 
     return nome, valor, data_termino
 
+def editar_servico(servico_dados_antigos):
+    styles.clear_t()
+    styles.titulo("Editar servico")
+    nome, valor, data_termino = cadastrar_servico()
+    servico_dados_antigos.nome = nome
+    servico_dados_antigos.valor = valor
+    servico_dados_antigos.data_termino = data_termino
+
 def excluir_servico(nome, data, valor):
     for servico in servicos:
         if servico.nome == nome and servico.data_termino == data and servico.valor == valor:
@@ -150,6 +192,15 @@ def excluir_servico(nome, data, valor):
     styles.clear_t()
     styles.msg_erro("Este serviço não está na lista de servicos!")
     return False
+
+def buscar_servico(nome):
+    styles.clear_t()
+    for servico in servicos:
+        if servico.nome == nome:
+            return servico
+    styles.clear_t()
+    styles.msg_erro("Este servico não está na lista de servicos!")
+    return None
 
 # ======== <<Fornecedor>> ========
 
@@ -175,6 +226,13 @@ def cadastrar_fornecedor():
 
     return nome, cnpj
 
+def editar_fornecedor(fornecedor_dados_antigos):
+    styles.clear_t()
+    styles.titulo("Editar fornecedor")
+    nome, cnpj = cadastrar_fornecedor()
+    fornecedor_dados_antigos.nome = nome
+    fornecedor_dados_antigos.cnpj = cnpj
+
 def excluir_fornecedor(cnpj):
     for fornecedor in fornecedores:
         if fornecedor.cnpj == cnpj:
@@ -185,6 +243,14 @@ def excluir_fornecedor(cnpj):
     styles.clear_t()
     styles.msg_erro("Este CNPJ não está na lista de fornecedores!")
     return False
+
+def buscar_fornecedor(cnpj):
+    for fornecedor in fornecedores:
+        if fornecedor.cnpj == cnpj:
+            return fornecedor
+    styles.clear_t()
+    styles.msg_erro("Este CNPJ não está na lista de fornecedores!")
+    return None
 
 # ======== <<Peça>> ========
 
@@ -241,6 +307,16 @@ def cadastrar_peca():
     
     return nome, marca, preco, original, codigo
 
+def editar_peca(peca_dados_antigos):
+    styles.clear_t()
+    styles.titulo("Editar peca")
+    nome, marca, preco, original, codigo = cadastrar_peca()
+    peca_dados_antigos.nome = nome
+    peca_dados_antigos.marca = marca
+    peca_dados_antigos.preco = preco
+    peca_dados_antigos.original = original
+    peca_dados_antigos.codigo = codigo
+
 def excluir_peca(codigo):
     for peca in pecas:
         if peca.codigo == codigo:
@@ -251,6 +327,14 @@ def excluir_peca(codigo):
     styles.clear_t()
     styles.msg_erro("Esta peça não está na lista de peças!")
     return False
+
+def buscar_peca(codigo):
+    for peca in pecas:
+        if peca.codigo == codigo:
+            return peca
+    styles.clear_t()
+    styles.msg_erro("Este codigo não está na lista de pecas!")
+    return None
 
 # ======== <<Conta>> ========
 
@@ -286,6 +370,14 @@ def cadastrar_conta():
 
     return nome, valor, data_vencimento
 
+def editar_conta(conta_dados_antigos):
+    styles.clear_t()
+    styles.titulo("Editar conta")
+    nome, valor, data_vencimento = cadastrar_conta()
+    conta_dados_antigos.nome = nome
+    conta_dados_antigos.valor = valor
+    conta_dados_antigos.data_vencimento = data_vencimento
+
 def excluir_conta(nome, data, valor):
     for conta in contas:
         if conta.nome == nome and conta.data_vencimento == data and conta.valor == valor:
@@ -296,3 +388,12 @@ def excluir_conta(nome, data, valor):
     styles.clear_t()
     styles.msg_erro("Esta conta não está na lista de contas!")
     return False
+
+def buscar_conta(nome):
+    styles.clear_t()
+    for conta in contas:
+        if conta.nome == nome:
+            return conta
+    styles.clear_t()
+    styles.msg_erro("Este conta não está na lista de contas!")
+    return None

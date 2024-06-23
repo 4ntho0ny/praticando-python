@@ -61,19 +61,9 @@ while running:
 
         else:
             continue
-
-        # ====================
-        # LOGS
-        # ====================
-        # print(clientes[0].nome, clientes[1].nome)
-        # print(veiculos[0].modelo)
-        # print(servicos[0].nome)
-        # print(pecas[0].nome)
-        # print(fornecedores[0].nome)
-        # print(contas[0].nome)
     
     # Seção de exclusão
-    if opc == 2:
+    elif opc == 2:
         styles.clear_t()
         styles.titulo("Excluir")
         opc_exclus = None
@@ -81,16 +71,6 @@ while running:
             opc_exclus = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer outro número-Sair da seção de exclusão\n-> "))
         except ValueError:
             styles.msg_erro("Opção indisponível!")
-
-        # ====================
-        # LOGS
-        # ====================
-        # print(clientes[0].nome)
-        # print(veiculos[0].modelo)
-        # print(servicos[0].nome)
-        # print(pecas[0].nome)
-        # print(fornecedores[0].nome)
-        # print(contas[0].nome)
 
         if opc_exclus == 1:
             styles.titulo("Excluir cliente")
@@ -159,13 +139,158 @@ while running:
         else:
             continue
 
-        # ====================
-        # LOGS
-        # ====================
-        # print(clientes[0].nome, clientes[1].nome)
-        # print(veiculos[0].modelo)
-        # print(servicos[0].nome)
-        # print(pecas[0].nome)
-        # print(fornecedores[0].nome)
-        # print(contas[0].nome)
-            
+    # Seção de alteracao
+    elif opc == 3:
+        styles.clear_t()
+        styles.titulo("Alterar")
+        opc_alterar = None
+        try:
+            opc_alterar = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer outro número-Sair da seção de exclusão\n-> "))
+        except ValueError:
+            styles.msg_erro("Opção indisponível!")
+        
+        if opc_alterar == 1:
+            styles.titulo("Alterar Dados do Cliente")
+            if not valid.verificar_lista_vazia(clientes):
+                continue
+            while True:
+                c = functions.buscar_cliente_cpf(input("Digite o CPF do cliente: "))
+                if c == None:
+                    continue
+                functions.editar_cliente(c)
+                break
+
+        elif opc_alterar == 2:
+            styles.titulo("Alterar Dados do Veiculo")
+            if not valid.verificar_lista_vazia(veiculos):
+                continue
+            while True:
+                v = functions.buscar_veiculo_placa(input("Digite a placa do veiculo: "))
+                if v == None:
+                    continue
+                functions.editar_veiculo(v)
+                break
+
+        elif opc_alterar == 3:
+            styles.titulo("Alterar Dados do Servico")
+            if not valid.verificar_lista_vazia(servicos):
+                continue
+            while True:
+                s = functions.buscar_servico(input("Digite o nome do servico: "))
+                if s == None:
+                    continue
+                functions.editar_servico()
+                break
+
+        elif opc_alterar == 4:
+            styles.titulo("Alterar Dados do Fornecedor")
+            if not valid.verificar_lista_vazia(fornecedores):
+                continue
+            while True:
+                f = functions.buscar_fornecedor(input("Digite o cnpj do fornecedor: "))
+                if f == None:
+                    continue
+                functions.editar_fornecedor(f)
+                break
+
+        elif opc_alterar == 5:
+            styles.titulo("Alterar Dados da Peca")
+            if not valid.verificar_lista_vazia(pecas):
+                continue
+            while True:
+                p = functions.buscar_peca(input("Digite codigo da peca: "))
+                if p == None:
+                    continue
+                functions.editar_peca(p)
+                break
+
+        elif opc_alterar == 6:
+            styles.titulo("Alterar Dados da Conta")
+            if not valid.verificar_lista_vazia(contas):
+                continue
+            while True:
+                c = functions.buscar_conta(input("Digite o nome da conta: "))
+                if c == None:
+                    continue
+                functions.editar_conta(c)
+                break
+        print(contas[0].nome)
+
+    # Seção de relatorio
+    elif opc == 4:
+        styles.clear_t()
+        styles.titulo("Gerar Relatorio")
+        opc_relat = None
+        try:
+            opc_relat = int(input("\n1-cliente\n2-veículo\n3-serviço\n4-fornecedor\n5-peça\n6-conta\nqualquer outro número-Sair da seção de exclusão\n-> "))
+        except ValueError:
+            styles.msg_erro("Opção indisponível!")
+        
+        if opc_relat == 1:
+            styles.titulo("Gerar relatorio do cliente")
+            if not valid.verificar_lista_vazia(clientes):
+                continue
+            while True:
+                c = functions.buscar_cliente_cpf(input("Insira o cpf do cliente: "))
+                if c == None:
+                    continue
+                c.relatorio()
+                break
+        
+        elif opc_relat == 2:
+            styles.titulo("Gerar relatorio do veiculo")
+            if not valid.verificar_lista_vazia(veiculos):
+                continue
+            while True:
+                v = functions.buscar_veiculo_placa(input("Insira a placa do veiculo: "))
+                if v == None:
+                    continue
+                v.relatorio()
+                break
+
+        elif opc_relat == 3:
+            styles.titulo("Gerar relatorio do servico")
+            if not valid.verificar_lista_vazia(servicos):
+                continue
+            while True:
+                s = functions.buscar_servico(input("Nome do servico: "))
+                if s == None:
+                    continue
+                s.relatorio()
+                break
+
+        elif opc_relat == 4:
+            styles.titulo("Gerar relatorio do fornecedor")
+            if not valid.verificar_lista_vazia(fornecedores):
+                continue
+            while True:
+                f = functions.buscar_fornecedor(input("CNPJ do fornecedor: "))
+                if f == None:
+                    continue
+                f.relatorio()
+                break
+
+        elif opc_relat == 5:
+            styles.titulo("Gerar relatorio da peca")
+            if not valid.verificar_lista_vazia(peca):
+                continue
+            while True:
+                p = functions.buscar_peca(input("Informe o codigo da peca: "))
+                if p == None:
+                    continue
+                p.relatorio()
+                break
+
+        elif opc_relat == 6:
+            styles.titulo("Gerar relatorio da conta")
+            if not valid.verificar_lista_vazia(contas):
+                continue
+            while True:
+                c = functions.buscar_conta(input("Informe o nome da conta: "))
+                if c == None:
+                    continue
+                c.relatorio()
+                break
+
+        else:
+            continue
