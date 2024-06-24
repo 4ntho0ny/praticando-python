@@ -68,7 +68,6 @@ def validar_data_nascimento(data):
     data_nascimento_obj = transformar_datetime_obj(data)
     data_atual_obj = transformar_datetime_obj(data_atual)
     delta_year = data_atual_obj.year - data_nascimento_obj.year
-    print(delta_year)
     if data_nascimento_obj > data_atual_obj or delta_year < 18:
         styles.msg_erro("Data de nascimento inválida!")
         return False

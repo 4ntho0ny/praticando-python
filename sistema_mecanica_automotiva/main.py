@@ -179,7 +179,7 @@ while running:
                 s = functions.buscar_servico(input("Digite o nome do servico: "))
                 if s == None:
                     continue
-                functions.editar_servico()
+                functions.editar_servico(s)
                 break
 
         elif opc_alterar == 4:
