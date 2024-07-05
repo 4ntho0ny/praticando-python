@@ -1,0 +1,3 @@
+armas = []
+clientes = []
+pessoas = []
